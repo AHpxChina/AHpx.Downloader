@@ -5,4 +5,16 @@
         <LangVersion>9</LangVersion>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="AHpx.Downloader.Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="AHpx.Downloader.Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="AHpx.Downloader.Test\**" />
+    </ItemGroup>
+
 </Project>
