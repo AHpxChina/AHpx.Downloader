@@ -36,6 +36,7 @@
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
+      <e p="README.md" t="Include" />
       <e p="Utils" t="Include">
         <e p="Extensions.cs" t="Include" />
       </e>
