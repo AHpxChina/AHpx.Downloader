@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AHpx.Downloader.Core;
 using AHpx.Downloader.Data;
+using Newtonsoft.Json.Linq;
 
 namespace AHpx.Downloader.Test
 {
@@ -16,17 +17,46 @@ namespace AHpx.Downloader.Test
     {
         public static async Task Main(string[] args)
         {
-            await DownloaderCore.Download(new DownloadItem
+            var list = await GetDownloadItems();
+            var acs = new List<Task>();
+
+            foreach (var item in list)
             {
-                File = new FileInfo(@"C:\Users\ahpx\Desktop\Test1\poxiao.jar"),
-                Url = "https://launcher.mojang.com/v1/objects/e80d9b3bf5085002218d4be59e668bac718abbc6/client.jar"
-            }, new DownloadConfig
-            {
-                Progress = new Progress<DownloadInfo>(info =>
+                // await Task.Factory.StartNew(async () =>
+                // {
+                //     
+                // });
+
+                acs.Add(new Task(async () =>
                 {
-                    Console.WriteLine($"Progress: {info.BytesReceived / 1024}/{info.TotalBytesToReceive / 1024}kb");
-                })
-            });
+                    await DownloaderCore.Download(item, new DownloadConfig
+                    {
+                        Progress = new Progress<DownloadInfo>(info =>
+                        {
+                            Console.WriteLine($"File: {item.File.Name}");
+                            Console.WriteLine(
+                                $"Progress: {info.BytesReceived / 1024}/{info.TotalBytesToReceive / 1024}kb");
+                        })
+                    });
+                }));
+            }
+
+            await Task.WhenAll(acs);
+        }
+
+        public static async Task<List<DownloadItem>> GetDownloadItems()
+        {
+            var list = new List<DownloadItem>();
+            foreach (var jToken in JArray.Parse(await File.ReadAllTextAsync("downloadslist.json")))
+            {
+                list.Add(new DownloadItem
+                {
+                    File = new FileInfo(jToken["file"].ToString()),
+                    Url = jToken["url"].ToString()
+                });
+            }
+
+            return list;
         }
     }
 }

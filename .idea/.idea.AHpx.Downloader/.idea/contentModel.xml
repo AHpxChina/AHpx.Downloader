@@ -11,6 +11,7 @@
         <e p="AHpx.Downloader.Test.csproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Class1.cs" t="Include" />
+        <e p="downloadslist.json" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -28,6 +29,7 @@
         <e p="DownloadInfo.cs" t="Include" />
         <e p="DownloadItem.cs" t="Include" />
       </e>
+      <e p="LICENSE" t="Include" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp3.1" t="Include">

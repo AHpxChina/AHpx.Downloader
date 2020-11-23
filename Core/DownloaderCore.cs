@@ -53,5 +53,22 @@ namespace AHpx.Downloader.Core
             
             await File.WriteAllBytesAsync(item.File.FullName, re.ToArray());
         }
+        
+        public static async Task Download(IEnumerable<DownloadItem> items, DownloadConfig config = null)
+        {
+            // config ??= new DownloadConfig();
+            //
+            // var handle = new HttpClientHandler
+            // {
+            //     AllowAutoRedirect = config.AutoRedirect
+            // };
+            // var client = new HttpClient(handle);
+            // client.DefaultRequestHeaders.UserAgent.Add(config.UserAgent);
+            //
+            // //Task.Factory.StartNew()
+            //
+
+            throw new NotImplementedException("Not now, use another one");
+        }
     }
 }

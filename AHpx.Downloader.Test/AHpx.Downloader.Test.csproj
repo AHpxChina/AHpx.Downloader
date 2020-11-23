@@ -12,5 +12,15 @@
     <ItemGroup>
       <ProjectReference Include="..\AHpx.Downloader.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <None Update="downloadslist.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 
 </Project>
